@@ -11,7 +11,7 @@ import pages.BasePage;
     glue = "steps", monochrome = true, 
     plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:", 
     "json:target/cucumber-reports.json"},
-    tags = "@Register"
+    tags = "@LogoutUser"
     )
 
 public class runner {

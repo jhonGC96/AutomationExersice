@@ -107,4 +107,69 @@ public class ExercisesSteps {
         Assert.assertEquals("Logged in as " + name + "", exercise.checkLoggedInAsUsernameIsVisible());
     }
 
+    // Scenario: As an user i want to login with incorrect email and password
+    // STEPS
+
+    @And("^the user wants to click on the link 'Signup / Login'$")
+    public void clicLoginLink() {
+        exercise.clickSignupLink();
+    }
+
+    @And("^he wants to verify \'([^\"]*)\' is visible$")
+    public void verifyLoginIsVisible(String text) {
+        Assert.assertEquals(text, exercise.checkLoginIsVisible());
+    }
+
+    @When("^he enters the incorrect email (.+) and password (.+)$")
+    public void fillLoginForm2(String email, String pass) {
+        exercise.fillLoginForm(email, pass);
+    }
+
+    @Then("^he clicks on the login button$")
+    public void clickLoginButton2() {
+        exercise.clickLoginButton();
+    }
+
+    @And("^he verifies error \'([^\"]*)\' is visible$")
+    public void verifyError(String error) {
+        Assert.assertEquals(error, exercise.verifyError());
+    }
+
+    // Scenario: As an user i want to logout
+    // STEPS
+
+    @And("^he clicks on the link 'Signup / Login'$")
+    public void clickLoginLink() {
+        exercise.clickSignupLink();
+    }
+
+    @And("^he wanna verify \'([^\"]*)\' is visible$")
+    public void verifyLoginVisible(String message) {
+        Assert.assertEquals(message, exercise.checkLoginIsVisible());
+    }
+
+    @And("^he enters the correct username (.+) and pass (.+)$")
+    public void fillFormLogin(String email, String pass) {
+        exercise.fillLoginForm(email, pass);
+    }
+
+    @When("^the user clicks 'login' button$")
+    public void clicLoginButton() {
+        exercise.clickLoginButton();
+    }
+
+    @And("^the user verifies that 'Logged in as username' (.+) is visible in the page$")
+    public void verifyloggedAsUser(String name) {
+        Assert.assertEquals("Logged in as " + name + "", exercise.checkLoggedInAsUsernameIsVisible());
+    }
+
+    @Then("^he clicks 'logout' button$")
+    public void clickLogoutButton() {
+        exercise.clickLogoutButton();
+    }
+
+    @And("^he verifies that user is navigated to login page$")
+    public void verifyNavigateLoginPage() {
+        Assert.assertEquals("Login to your account", exercise.checkLoginIsVisible());
+    }
 }

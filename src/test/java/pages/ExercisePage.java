@@ -35,6 +35,8 @@ public class ExercisePage extends BasePage {
     private String emailAdressTextboxLogin = "//input[@data-qa='login-email']";
     private String passwordTextboxLogin = "//input[@data-qa='login-password']";
     private String loginButton = "//button[contains(text(),'Login')]";
+    private String errorLoginText = "//p[contains(text(),'Your email or password is incorrect!')]";
+    private String logoutButton = "//header/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[4]/a[1]";
 
 
 
@@ -131,6 +133,14 @@ public class ExercisePage extends BasePage {
 
     public void clickLoginButton(){
         cliclElement(loginButton);
+    }
+
+    public String verifyError(){
+        return textFromElement(errorLoginText);
+    }
+
+    public void clickLogoutButton() {
+        cliclElement(logoutButton);
     }
 
 }

@@ -7,7 +7,7 @@ you can fin the feature file in the next path "src/test/resources/features" with
 
 you can finding the next 26 text cases:
 
-Test Case 1: Register User
+Test Case 1: Register User 
 
 Test Case 2: Login User with correct email and password
 

@@ -6,7 +6,7 @@ Feature: Testing page Automation Exercises
         Given than the user navigate to 'https://automationexercise.com/'
         And he verifies that the home page is visible succesfully
 
-
+    @HappyPathRegister
     Scenario Outline: As a test engineer i want to validate to register user
         And he clicks on 'Signup/Login' link
         And  he verifies that the text 'New User Signup' is visible
@@ -25,13 +25,37 @@ Feature: Testing page Automation Exercises
             | Carla | ccarlaaddkj8@gmail.com | Prueba1. | Yuliana   | Guerrero | calle 5     | Singapore | sonora  | la paz | 56764 | 6765437689 |
             | Diana | ddiandda883@gmail.com  | Prueba1. | Lisseth   | Guerrero | pino suarez | Canada    | Sinaloa | cocoa  | 56567 | 5565342576 |
 
-
-    Scenario: As a user i want to login with correct email and password
+    @HappyPathLogin
+    Scenario: As an user i want to login with correct email and password
         And the user clicks on 'signup/login' link
         When he verifies 'Login to your account' is visible
         And the user enter the correct email <email> and password <pass>
         Then he clicks 'login' button
         And he verifies that 'Logged in as username' <name> is visible in the page
+        Examples:
+            | email            | pass     | name |
+            | jijo@hotmail.com | Prueba1. | jijo |
+
+    @LoginIncorrectCredentials
+    Scenario: As an user i want to login with incorrect email and password
+        And the user wants to click on the link 'Signup / Login'
+        And he wants to verify 'Login to your account' is visible
+        When he enters the incorrect email <email> and password <pass>
+        Then he clicks on the login button
+        And he verifies error 'Your email or password is incorrect!' is visible
+        Examples:
+            | email                | pass     |
+            | jijijojo@hotmail.com | Prueba3. |
+
+    @LogoutUser
+    Scenario: As an user i want to logout
+        And he clicks on the link 'Signup / Login'
+        And he wanna verify 'Login to your account' is visible
+        And he enters the correct username <email> and pass <pass>
+        When the user clicks 'login' button
+        And the user verifies that 'Logged in as username' <name> is visible in the page
+        Then he clicks 'logout' button
+        And he verifies that user is navigated to login page
         Examples:
             | email            | pass     | name |
             | jijo@hotmail.com | Prueba1. | jijo |
