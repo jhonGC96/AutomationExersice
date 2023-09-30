@@ -2,7 +2,7 @@ package pages;
 
 public class ExercisePage extends BasePage {
 
-    private String homeLogo = "//header/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]";
+    private String homeLogo = "//img [@alt='Website for automation practice']";
     private String homeCarousel = "//div[@id='slider-carousel']";
     private String homeSignup = "//header/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[4]/a[1]";
     private String signupText = "//h2[contains(text(),'New User Signup!')]";
@@ -37,6 +37,7 @@ public class ExercisePage extends BasePage {
     private String loginButton = "//button[contains(text(),'Login')]";
     private String errorLoginText = "//p[contains(text(),'Your email or password is incorrect!')]";
     private String logoutButton = "//header/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[4]/a[1]";
+    private String emailExistsText = "//p[contains(text(),'Email Address already exist!')]";
 
 
 
@@ -141,6 +142,10 @@ public class ExercisePage extends BasePage {
 
     public void clickLogoutButton() {
         cliclElement(logoutButton);
+    }
+
+    public String verifyEmailExistsMessage (){
+        return textFromElement(emailExistsText);
     }
 
 }

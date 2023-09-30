@@ -8,16 +8,20 @@ import pages.ExercisePage;
 public class ExercisesSteps {
     ExercisePage exercise = new ExercisePage();
 
+    // Background
+    // STEPS
     @Given("^than the user navigate to 'https://automationexercise.com/'$")
     public void navigateToHomePage() {
         exercise.navigateToHomePage();
     }
 
-    @And("^he verifies that the home page is visible succesfully$")
+    @And("^he verifies that home page is visible succesfully$")
     public void verifyHomePageVisibility() {
         Assert.assertTrue(exercise.verifyHomePageVisibility());
     }
 
+    // Scenario Outline: As a test engineer i want to validate to register user
+    // STEPS
     @And("^he clicks on 'Signup/Login' link$")
     public void clickSignupLink() {
         exercise.clickSignupLink();
@@ -82,14 +86,9 @@ public class ExercisesSteps {
     // Scenario: As a user i want to login with correct email and password
     // Steps
 
-    @And("^the user clicks on 'signup/login' link$")
-    public void clickSignupLink2() {
-        exercise.clickSignupLink();
-    }
-
-    @When("^he verifies 'Login to your account' is visible$")
-    public void checkLoginIsVisible() {
-        Assert.assertEquals("Login to your account", exercise.checkLoginIsVisible());
+    @When("^he verifies \'([^\"]*)\' is visible$")
+    public void checkLoginIsVisible(String message) {
+        Assert.assertEquals(message, exercise.checkLoginIsVisible());
     }
 
     @And("^the user enter the correct email (.*) and password (.*)$")
@@ -102,33 +101,9 @@ public class ExercisesSteps {
         exercise.clickLoginButton();
     }
 
-    @And("^he verifies that 'Logged in as username' (.*) is visible in the page$")
-    public void checkLogedIsVisible(String name) {
-        Assert.assertEquals("Logged in as " + name + "", exercise.checkLoggedInAsUsernameIsVisible());
-    }
-
     // Scenario: As an user i want to login with incorrect email and password
     // STEPS
 
-    @And("^the user wants to click on the link 'Signup / Login'$")
-    public void clicLoginLink() {
-        exercise.clickSignupLink();
-    }
-
-    @And("^he wants to verify \'([^\"]*)\' is visible$")
-    public void verifyLoginIsVisible(String text) {
-        Assert.assertEquals(text, exercise.checkLoginIsVisible());
-    }
-
-    @When("^he enters the incorrect email (.+) and password (.+)$")
-    public void fillLoginForm2(String email, String pass) {
-        exercise.fillLoginForm(email, pass);
-    }
-
-    @Then("^he clicks on the login button$")
-    public void clickLoginButton2() {
-        exercise.clickLoginButton();
-    }
 
     @And("^he verifies error \'([^\"]*)\' is visible$")
     public void verifyError(String error) {
@@ -138,29 +113,9 @@ public class ExercisesSteps {
     // Scenario: As an user i want to logout
     // STEPS
 
-    @And("^he clicks on the link 'Signup / Login'$")
-    public void clickLoginLink() {
-        exercise.clickSignupLink();
-    }
-
-    @And("^he wanna verify \'([^\"]*)\' is visible$")
-    public void verifyLoginVisible(String message) {
-        Assert.assertEquals(message, exercise.checkLoginIsVisible());
-    }
-
     @And("^he enters the correct username (.+) and pass (.+)$")
     public void fillFormLogin(String email, String pass) {
         exercise.fillLoginForm(email, pass);
-    }
-
-    @When("^the user clicks 'login' button$")
-    public void clicLoginButton() {
-        exercise.clickLoginButton();
-    }
-
-    @And("^the user verifies that 'Logged in as username' (.+) is visible in the page$")
-    public void verifyloggedAsUser(String name) {
-        Assert.assertEquals("Logged in as " + name + "", exercise.checkLoggedInAsUsernameIsVisible());
     }
 
     @Then("^he clicks 'logout' button$")
@@ -172,4 +127,19 @@ public class ExercisesSteps {
     public void verifyNavigateLoginPage() {
         Assert.assertEquals("Login to your account", exercise.checkLoginIsVisible());
     }
+
+    // Scenario: As an user i want to register with an existing user
+    // STEPS
+
+    @When("^he enters the name (.+) and already registered email (.+) address$")
+    public void enterEmailRegistered(String name, String email) {
+        exercise.fillSignupForm(name, email);
+    }
+
+    @Then("^he verifies the error \'([^\"]*)\' is visible$")
+    public void verifyEmailExistsMessage(String messageToverify) {
+        Assert.assertEquals(messageToverify, exercise.verifyEmailExistsMessage());
+
+    }
+
 }

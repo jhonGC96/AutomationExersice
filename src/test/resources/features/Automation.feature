@@ -4,12 +4,12 @@ Feature: Testing page Automation Exercises
 
     Background: navigate to
         Given than the user navigate to 'https://automationexercise.com/'
-        And he verifies that the home page is visible succesfully
+        And he verifies that home page is visible succesfully
 
     @HappyPathRegister
     Scenario Outline: As a test engineer i want to validate to register user
         And he clicks on 'Signup/Login' link
-        And  he verifies that the text 'New User Signup' is visible
+        And he verifies that the text 'New User Signup' is visible
         And he enters name <name> and email <email> address
         When he clicks on 'Signup' button
         And he verifies that 'ENTER ACCOUNT INFORMATION' is visible
@@ -27,35 +27,46 @@ Feature: Testing page Automation Exercises
 
     @HappyPathLogin
     Scenario: As an user i want to login with correct email and password
-        And the user clicks on 'signup/login' link
+        And he clicks on 'Signup/Login' link
         When he verifies 'Login to your account' is visible
-        And the user enter the correct email <email> and password <pass>
+        And the user enter the correct email <user> and password <password>
         Then he clicks 'login' button
-        And he verifies that 'Logged in as username' <name> is visible in the page
+        And he verifies that 'Logged in as username' <name> is visible
         Examples:
-            | email            | pass     | name |
-            | jijo@hotmail.com | Prueba1. | jijo |
+            | user                  | password | name |
+            | john_5521@hotmail.com | Prueba1. | jhon |
 
     @LoginIncorrectCredentials
     Scenario: As an user i want to login with incorrect email and password
-        And the user wants to click on the link 'Signup / Login'
-        And he wants to verify 'Login to your account' is visible
-        When he enters the incorrect email <email> and password <pass>
-        Then he clicks on the login button
+        And he clicks on 'Signup/Login' link
+        When he verifies 'Login to your account' is visible
+        And the user enter the correct email <user> and password <password>
+        Then he clicks 'login' button
         And he verifies error 'Your email or password is incorrect!' is visible
         Examples:
-            | email                | pass     |
+            | user                 | password |
             | jijijojo@hotmail.com | Prueba3. |
 
     @LogoutUser
     Scenario: As an user i want to logout
-        And he clicks on the link 'Signup / Login'
-        And he wanna verify 'Login to your account' is visible
+        And he clicks on 'Signup/Login' link
+        And he verifies 'Login to your account' is visible
         And he enters the correct username <email> and pass <pass>
-        When the user clicks 'login' button
-        And the user verifies that 'Logged in as username' <name> is visible in the page
+        When he clicks 'login' button
+        And he verifies that 'Logged in as username' <name> is visible
         Then he clicks 'logout' button
         And he verifies that user is navigated to login page
         Examples:
             | email            | pass     | name |
             | jijo@hotmail.com | Prueba1. | jijo |
+
+    @RegisterUserWithExistingEmail
+    Scenario: As an user i want to register with an existing user
+        And he clicks on 'Signup/Login' link
+        And he verifies 'Login to your account' is visible
+        When he enters the name <name> and already registered email <email> address
+        And he clicks on 'Signup' button
+        Then he verifies the error 'Email Address already exist!' is visible
+        Examples:
+            | email            | name |
+            | jijo@hotmail.com | jijo |

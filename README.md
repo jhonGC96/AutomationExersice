@@ -13,7 +13,7 @@ you can finding the next 26 text cases:
 | Test Case 2: Login User with correct email and password                             | @HappyPathLogin            |
 | Test Case 3: Login User with incorrect email and password                           | @LoginIncorrectCredentials |
 | Test Case 4: Logout User                                                            | @LogoutUser                |
-| Test Case 5: Register User with existing email                                      |                            |
+| Test Case 5: Register User with existing email                                      | @RegisterUserWithExistingEmail|
 | Test Case 6: Contact Us Form                                                        |                            |
 | Test Case 7: Verify Test Cases Page                                                 |                            |
 | Test Case 8: Verify All Products and product detail page                            |                            |
